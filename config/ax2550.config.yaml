@@ -1,0 +1,33 @@
+ax2550_node:
+  ros__parameters:
+#    device_name: "/dev/ttyUSB0"
+    device_name: "/dev/serial/by-id/usb-ftdi_usb_serial_converter_ftDWB7LP-if00-port0"
+    encoder_poll_rate: 100
+# constant multiplied with rpm to get relative motor command values    
+    speed_constant: 0.06263
+# amps_limt: hex value 
+#   low 4 bits are steps from 0 to 6 where 0 = 7.5A and 6 = 30A (3.75A per step)
+#   hight 4 bits are a number. Multiply this number with 0.25 and deduct from A set in low bits
+#   E0 = 7.5A - 14 * 0.25A = 4A (this is the lowest possible value)  
+    amps_limit_: "E0"
+# maximum motor command values (<= 127)    
+    max_a: 5
+    max_b: 4
+# comands on my ax1550 are reversed normally they should be    
+#    cmd_dir_fw: "!A"
+#    cmd_dir_bw: "!a"
+#    cmd_dir_le: "!B"
+#    cmd_dir_ri: "!b"
+    cmd_dir_fw: "!b"
+    cmd_dir_bw: "!B"
+    cmd_dir_le: "!a"
+    cmd_dir_ri: "!A"
+# odometry parameters    
+    encoder_resolution: 800.00
+#    wheel_separation: 0.315
+    wheel_separation: 0.3175
+#    wheel_diameter: 0.07
+    wheel_diameter: 0.0686
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    enable_odom_tf: true
